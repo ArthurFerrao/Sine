@@ -1,9 +1,13 @@
-package com.example.ferro.listsine;
+package com.example.ferro.listsine.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.ferro.listsine.asyncTask.ListAsy;
+import com.example.ferro.listsine.R;
+import com.example.ferro.listsine.entity.Sine;
 
 import java.util.concurrent.ExecutionException;
 

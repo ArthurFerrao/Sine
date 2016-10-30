@@ -1,8 +1,10 @@
-package com.example.ferro.listsine;
+package com.example.ferro.listsine.asyncTask;
 
 import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
+
+import com.example.ferro.listsine.entity.Sine;
 
 import java.io.IOException;
 import java.io.InputStream;

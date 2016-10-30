@@ -6,10 +6,10 @@
     android:background="@drawable/background">
 
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:divider="#226368"
         android:dividerHeight="1px"
-        android:divider="#f12b484e"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/list"/>
 
 

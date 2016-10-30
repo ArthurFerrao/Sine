@@ -1,16 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.ferro.listsine.MainActivity">
+    android:background="@drawable/background">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_marginTop="40px"
+        android:text="Bem Vindo ao Sine!"
+        android:layout_centerHorizontal="true"
+        android:textSize="80px"
+        android:textColor="#FFFFFF"
+        android:fontFamily="cursive"/>
+    <TextView
+        android:layout_marginTop="200px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Uma maneira fácil e prática de procurar empregos próximos a você!"
+        android:layout_centerHorizontal="true"
+        android:textSize="40px"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:fontFamily="casual"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerInParent="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="160px"
+            android:text="Empregos em todo Brasil"
+            android:onClick="goListCg"
+            android:background="@drawable/buttonradio"
+            android:textColor="#d78237"
+            android:textSize="40px"
+            android:fontFamily="sans-serif"
+            android:id="@+id/btnListAll"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70px"
+            android:text="Empregos em Campina"
+            android:background="@drawable/buttonradio"
+            android:onClick="goListCg"
+            android:textColor="#d78237"
+            android:textSize="40px"
+            android:fontFamily="sans-serif"
+            android:id="@+id/btnListCg"
+            />
+
+    </LinearLayout>
 </RelativeLayout>

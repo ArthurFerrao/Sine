@@ -1,4 +1,4 @@
-package com.example.ferro.listsine;
+package com.example.ferro.listsine.entity;
 
 /**
  * Created by Ferrão on 29/10/2016.
@@ -75,19 +75,18 @@ public class Sine {
     public void setEntidadeConveniada(String entidadeConveniada) {this.entidadeConveniada = entidadeConveniada;}
 
     @Override
-    public String toString() {
-        return "Sine{" +
-                "codPosto: " + codPosto +
-                ", nome: " + nome +
-                ", entidadeConveniada: " + entidadeConveniada +
-                ", endereco: " + endereco +
-                ", bairro: " + bairro +
-                ", cep: " + cep +
-                ", telefone: " + telefone +
-                ", municipio: " + municipio +
-                ", uf: " + uf +
-                ", lat: " + lat +
-                ", long: " + lon +
-                "}";
+    public String toString(){
+        return(
+                "Código do posto: " + getCodPosto() + "\n" +
+                        "Nome: " + getNome() + "\n" +
+                        "Entidade Conveniada: " + getEntidadeConveniada() + "\n" +
+                        "Endereço: " + getEndereco() + "\n" +
+                        "Bairro: " + getBairro() + "\n" +
+                        "CEP: " + getCep() + "\n" +
+                        "Telefone: " + getTelefone() + "\n" +
+                        "Múnicipio: " + getMunicipio() + "\n" +
+                        "Estado: " + getUf() + "\n" +
+                        "Latitude: " + getLat() + "\n" +
+                        "Longitude: " + getLon() + "\n");
     }
 }
