@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
 
-import com.example.ferro.listsine.entity.Sine;
+import com.example.ferro.listsine.entity.SineDet;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,14 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Ferrão on 29/10/2016.
+ * Created by ALemos on 29/10/2016.
  */
-public class ListAsy extends AsyncTask< String, Void, List<Sine>> {
+public class ListAsyDet extends AsyncTask< String, Void, List<SineDet>> {
 
     @Override
-    protected List<Sine> doInBackground(String... strings) {
+    protected List<SineDet> doInBackground(String... strings) {
         String urlString = strings[0];
-        List<Sine> sine = new ArrayList<>();
+        List<SineDet> sine = new ArrayList<>();
 
         try {
             URL url = new URL(urlString);
@@ -42,12 +42,12 @@ public class ListAsy extends AsyncTask< String, Void, List<Sine>> {
         } catch (IOException ex) {
             ex.printStackTrace();
             Log.e("Erro", "Falha ao acessar Web service", ex);
-        } finally {
-            return sine;
         }
+
+        return sine;
     }
-    public List<Sine> getSines(JsonReader reader) throws IOException {
-        List<Sine> sines = new ArrayList<Sine>();
+    public List<SineDet> getSines(JsonReader reader) throws IOException {
+        List<SineDet> sines = new ArrayList<SineDet>();
         reader.beginArray();
 
         while (reader.hasNext()) {
@@ -57,8 +57,8 @@ public class ListAsy extends AsyncTask< String, Void, List<Sine>> {
         reader.endArray();
         return sines;
     }
-    public Sine getSine(JsonReader reader) throws IOException {
-        String codPosto="",nome = "",entidadeConveniada = "",uf="";
+    public SineDet getSine(JsonReader reader) throws IOException {
+        String codPosto="",nome = "",entidadeConveniada = "",endereco="",bairro="",cep="",telefone="",municipio="",uf="",lat="",lon="";
         reader.beginObject();
 
         while (reader.hasNext()) {
@@ -72,18 +72,39 @@ public class ListAsy extends AsyncTask< String, Void, List<Sine>> {
             } else if (obj.equals("entidadeConveniada")) {
                 entidadeConveniada = reader.nextString();
 
-            }else if (obj.equals("uf")) {
+            } else if (obj.equals("endereco")) {
+                endereco = reader.nextString();
+
+            } else if (obj.equals("bairro")) {
+                bairro = reader.nextString();
+
+            } else if (obj.equals("cep")) {
+                cep = reader.nextString();
+
+            } else if (obj.equals("telefone")) {
+                telefone = reader.nextString();
+
+            } else if (obj.equals("municipio")) {
+                municipio = reader.nextString();
+
+            } else if (obj.equals("uf")) {
                 uf = reader.nextString();
 
-            } else {
+            } else if (obj.equals("lat")) {
+                lat = reader.nextString();
+
+            } else if (obj.equals("long")) {
+                lon = reader.nextString();
+
+            }else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return new Sine(codPosto, nome, entidadeConveniada, uf);
+        return new SineDet(codPosto, nome, entidadeConveniada,  endereco,  bairro,  cep,  telefone,  municipio,  uf,  lat, lon);
     }
     @Override
-    protected void onPostExecute(List<Sine> result){
+    protected void onPostExecute(List<SineDet> result){
         super.onPostExecute(result);
     }
 
