@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="160px"
             android:text="Empregos em todo Brasil"
-            android:onClick="goListCg"
+            android:onClick="goListAll"
             android:background="@drawable/buttonradio"
             android:textColor="#d78237"
             android:textSize="40px"
