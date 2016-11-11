@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnListAll;
     private Button btnListCg;
+    private Button btnMapsCg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         btnListAll = (Button) findViewById(R.id.btnListAll);
         btnListCg = (Button) findViewById(R.id.btnListCg);
+        btnMapsCg = (Button) findViewById(R.id.btnMapsCg);
+
 
     }
 
@@ -31,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void goListCg(View view){
         Intent intent = new Intent(this, ListCgActivity.class);
+        startActivity(intent);
+    }
+
+    public void goMapsCg(View view){
+        Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 }

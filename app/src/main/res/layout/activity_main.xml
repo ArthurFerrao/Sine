@@ -59,5 +59,18 @@
             android:id="@+id/btnListCg"
             />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70px"
+            android:text="Empregos no mapa"
+            android:background="@drawable/buttonradio"
+            android:onClick="goMapsCg"
+            android:textColor="#d78237"
+            android:textSize="40px"
+            android:fontFamily="sans-serif"
+            android:id="@+id/btnMapsCg"
+            />
+
     </LinearLayout>
 </RelativeLayout>
