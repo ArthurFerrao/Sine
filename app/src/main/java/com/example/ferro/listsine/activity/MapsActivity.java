@@ -49,9 +49,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try {
             mMap = googleMap;
             double latitude, longitude;
+            LatLng CampinaG = new LatLng(-7.2250861, -35.8811222);
             ListAsyDet listSine = new ListAsyDet();
             List<SineDet> sines =  listSine.execute("http://mobile-aceite.tcu.gov.br/mapa-da-saude/rest/emprego/latitude/-7.242662/longitude/-35.9716057/raio/100").get();
-
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(CampinaG, 7));
             for(int i = 0; i < sines.size(); i ++){
                 latitude = Double.parseDouble(sines.get(i).getLat());
                 longitude = Double.parseDouble(sines.get(i).getLon());
