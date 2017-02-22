@@ -1,5 +1,8 @@
 package com.example.ferro.listsine.activity;
 
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -12,6 +15,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -22,7 +26,7 @@ import java.util.concurrent.ExecutionException;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-
+    String lat, lon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,16 +52,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         try {
             mMap = googleMap;
+            mMap.setOnMyLocationChangeListener(myLocationChangeListener);
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+
+                return;
+            }
+            mMap.setMyLocationEnabled(true);
             double latitude, longitude;
-            LatLng CampinaG = new LatLng(-7.2250861, -35.8811222);
+            //LatLng CampinaG = new LatLng(-7.2250861, -35.8811222);
+
             ListAsyDet listSine = new ListAsyDet();
-            List<SineDet> sines =  listSine.execute("http://mobile-aceite.tcu.gov.br/mapa-da-saude/rest/emprego/latitude/-7.242662/longitude/-35.9716057/raio/100").get();
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(CampinaG, 7));
+            String link = "http://mobile-aceite.tcu.gov.br/mapa-da-saude/rest/emprego/latitude/" + lat + "/longitude/" + lon + "/raio/100";
+            List<SineDet> sines =  listSine.execute(link).get();
+
             for(int i = 0; i < sines.size(); i ++){
                 latitude = Double.parseDouble(sines.get(i).getLat());
                 longitude = Double.parseDouble(sines.get(i).getLon());
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(latitude, longitude))
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.sine))
                         .title(sines.get(i).getNome())); // Exibe o nome do posto como titulo do marcador
 
             }
@@ -70,4 +84,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
+
+
+
+
+    private GoogleMap.OnMyLocationChangeListener myLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+        @Override
+        public void onMyLocationChange(Location location) {
+            String msg = "New Latitude: " + location.getLatitude()
+                    + "New Longitude: " + location.getLongitude();
+            lat = String.valueOf(location.getLatitude());
+            lon =  String.valueOf(location.getLongitude());
+            LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(loc));
+            if(mMap != null){
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 16.0f));
+            }
+        }
+    };
 }
